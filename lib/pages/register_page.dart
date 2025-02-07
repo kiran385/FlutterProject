@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterproject/components/my_button.dart';
 import 'package:flutterproject/components/my_textfield.dart';
 import 'package:flutterproject/components/square_tile.dart';
+import 'package:flutterproject/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -66,6 +67,37 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       },
     );
+  }
+
+  void signInWithGoogle() async {
+    showDialog(
+     context: context,
+     barrierDismissible: false,
+     builder: (context) {
+       return const Center(
+         child: CircularProgressIndicator(),
+       );
+      },
+    );
+
+    try {
+      AuthService authService = AuthService();
+      User? user = await authService.signInWithGoogle();
+
+      Navigator.pop(context); // Close the loading dialog
+
+      if (user != null) {
+        // User successfully signed in
+        // You can navigate to the next page or show a success message
+        print("Google Sign-In successful: ${user.email}");
+      } else {
+        // User canceled the sign-in
+        _showErrorDialog("Google Sign-In canceled!");
+      }
+    } catch (e) {
+      Navigator.pop(context); // Close the loading dialog
+      _showErrorDialog("Google Sign-In failed!");
+    }
   }
 
   @override
@@ -165,14 +197,13 @@ class _RegisterPageState extends State<RegisterPage> {
               // google + apple sign in buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  // google button
-                  SquareTile(imagePath: 'lib/images/google.png'),
-
-                  SizedBox(width: 25),
-
-                  // apple button
-                  SquareTile(imagePath: 'lib/images/apple.png')
+                children: [
+                  GestureDetector(
+                    onTap: signInWithGoogle,
+                    child: const SquareTile(imagePath: 'lib/images/google.png'),
+                  ),
+                  const SizedBox(width: 25),
+                  const SquareTile(imagePath: 'lib/images/apple.png'),
                 ],
               ),
 
