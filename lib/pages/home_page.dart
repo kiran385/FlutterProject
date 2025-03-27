@@ -4,6 +4,7 @@ import 'package:flutterproject/components/my_button.dart';
 import 'package:flutterproject/components/square_tile.dart';
 import 'package:flutterproject/pages/quiz_page.dart';
 import 'package:flutterproject/pages/quiz_history_page.dart';
+import 'package:flutterproject/pages/progress_page.dart';
 
 class HomePage extends StatelessWidget {
     HomePage({super.key});
@@ -96,6 +97,21 @@ class HomePage extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => const QuizHistoryPage(),
+                                        ),
+                                    );
+                                },
+                            ),
+
+                            const SizedBox(height: 10),
+
+                            // Progress button
+                            MyButton(
+                                text: "View Progress",
+                                onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => const ProgressPage(),
                                         ),
                                     );
                                 },
