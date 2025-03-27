@@ -221,7 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 25),
 
-                // google + apple sign in buttons
+                // google sign in buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -229,8 +229,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       onTap: signInWithGoogle,
                       child: const SquareTile(imagePath: 'lib/images/google.png'),
                     ),
-                    const SizedBox(width: 25),
-                    const SquareTile(imagePath: 'lib/images/apple.png'),
                   ],
                 ),
 

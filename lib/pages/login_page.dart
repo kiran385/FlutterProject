@@ -66,12 +66,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void signInWithGoogle() async {
     showDialog(
-     context: context,
-     barrierDismissible: false,
-     builder: (context) {
-       return const Center(
-         child: CircularProgressIndicator(),
-       );
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
 
@@ -79,19 +79,20 @@ class _LoginPageState extends State<LoginPage> {
       AuthService authService = AuthService();
       User? user = await authService.signInWithGoogle();
 
-      Navigator.pop(context); // Close the loading dialog
+      if (mounted) {
+        Navigator.pop(context); // Close the loading dialog
+      }
 
       if (user != null) {
         // User successfully signed in
-        // You can navigate to the next page or show a success message
         print("Google Sign-In successful: ${user.email}");
-      } else {
-        // User canceled the sign-in
-        _showErrorDialog("Google Sign-In canceled!");
+        // No need to show any dialog for success
       }
     } catch (e) {
-      Navigator.pop(context); // Close the loading dialog
-      _showErrorDialog("Google Sign-In failed!");
+      if (mounted) {
+        Navigator.pop(context); // Close the loading dialog
+        _showErrorDialog("Google Sign-In failed: ${e.toString()}");
+      }
     }
   }
 
@@ -194,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 25),
 
-                // google + apple sign in buttons
+                // google sign in buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -202,8 +203,6 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: signInWithGoogle,
                       child: const SquareTile(imagePath: 'lib/images/google.png'),
                     ),
-                    const SizedBox(width: 25),
-                    const SquareTile(imagePath: 'lib/images/apple.png'),
                   ],
                 ),
 
