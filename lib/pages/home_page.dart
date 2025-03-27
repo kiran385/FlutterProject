@@ -51,24 +51,24 @@ class HomePage extends StatelessWidget {
 
                             const SizedBox(height: 25),
 
-                            // welcome message
+                            // welcome message with email
                             Text(
-                                'Welcome to Apptitude App',
+                                'Welcome,',
                                 style: TextStyle(
                                     color: Colors.grey[700],
                                     fontSize: 16,
                                 ),
                                 textAlign: TextAlign.center,
                             ),
-
-                            const SizedBox(height: 25),
-
-                            // Profile Section Button
-                            MyButton(
-                                text: "View Profile",
-                                onTap: () {
-                                    // Add profile view functionality
-                                },
+                            const SizedBox(height: 5),
+                            Text(
+                                user.email!,
+                                style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
                             ),
 
                             const SizedBox(height: 25),
