@@ -100,53 +100,54 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 50),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 25),
 
-              // logo
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
-
-              const SizedBox(height: 50),
-
-              // welcome back, you've been missed!
-              Text(
-                'Welcome back you\'ve been missed!',
-                style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 16,
+                // logo
+                const Icon(
+                  Icons.lock,
+                  size: 80,
                 ),
-              ),
 
-              const SizedBox(height: 25),
+                const SizedBox(height: 25),
 
-              // email textfield
-              MyTextField(
-                controller: emailController,
-                hintText: 'Email',
-                obscureText: false,
-              ),
+                // welcome back, you've been missed!
+                Text(
+                  'Welcome back you\'ve been missed!',
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
 
-              const SizedBox(height: 10),
+                const SizedBox(height: 25),
 
-              // password textfield
-              MyTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true,
-              ),
+                // email textfield
+                MyTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
+                ),
 
-              const SizedBox(height: 10),
+                const SizedBox(height: 10),
 
-              // forgot password?
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
+                // password textfield
+                MyTextField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: true,
+                ),
+
+                const SizedBox(height: 10),
+
+                // forgot password?
+                Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
@@ -155,22 +156,19 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-              ),
 
-              const SizedBox(height: 25),
+                const SizedBox(height: 25),
 
-              // sign in button
-              MyButton(
-                text: "Sign In",
-                onTap: signUserIn,
-              ),
+                // sign in button
+                MyButton(
+                  text: "Sign In",
+                  onTap: signUserIn,
+                ),
 
-              const SizedBox(height: 50),
+                const SizedBox(height: 25),
 
-              // or continue with
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
+                // or continue with
+                Row(
                   children: [
                     Expanded(
                       child: Divider(
@@ -193,46 +191,48 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-              ),
 
-              const SizedBox(height: 50),
+                const SizedBox(height: 25),
 
-              // google + apple sign in buttons
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: signInWithGoogle,
-                    child: const SquareTile(imagePath: 'lib/images/google.png'),
-                  ),
-                  const SizedBox(width: 25),
-                  const SquareTile(imagePath: 'lib/images/apple.png'),
-                ],
-              ),
-              const SizedBox(height: 50),
+                // google + apple sign in buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: signInWithGoogle,
+                      child: const SquareTile(imagePath: 'lib/images/google.png'),
+                    ),
+                    const SizedBox(width: 25),
+                    const SquareTile(imagePath: 'lib/images/apple.png'),
+                  ],
+                ),
 
-              // not a member? register now
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                  const SizedBox(width: 4),
-                  GestureDetector(
-                    onTap: widget.onTap, // Callback to toggle login/register page
-                    child: const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                const SizedBox(height: 25),
+
+                // not a member? register now
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                    const SizedBox(width: 4),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                ),
+                const SizedBox(height: 25), // Add bottom padding
+              ],
+            ),
           ),
         ),
       ),
